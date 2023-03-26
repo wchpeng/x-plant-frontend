@@ -2,7 +2,7 @@ import axios from "axios";
 
 // 创建实例时配置默认值
 const instance = axios.create({
-  baseURL: 'http://127.0.0.1:8080'
+  baseURL: 'http://127.0.0.1:8080/api'
 });
 
 // 设置超时时间
@@ -23,7 +23,6 @@ instance.interceptors.request.use(function (config) {
 
 // 添加响应拦截器
 instance.interceptors.response.use(function (response) {
-  // 2xx 范围内的状态码都会触发该函数。
   // 对响应数据做点什么
   if (response.data.code == 400) {  // code==400的要跳转到登录页
     sessionStorage.setItem('token', '')
@@ -55,4 +54,41 @@ export async function register(username, password){
     username: username,
     password: password
   })
+}
+
+
+export async function apiRhizomeList(params){
+  // 作品列表
+  console.log(params)
+  return await instance.get('/rhizome-list/v1', {params: params})
+}
+
+export async function apiRhizomeDetail(rid){
+  // 作品详情
+  return await instance.get('/rhizome-detail/v1?rhizome_id=' + rid)
+}
+
+export async function apiAddRhizome(data){
+  // 添加作品
+  return await instance.post('/add-rhizome/v1', data)
+}
+
+
+export async function apiModifyRhizome(data){
+  // 修改作品
+  return await instance.put('/mod-rhizome/v1' + data)
+}
+
+
+export async function apiDeleteRhizome(rid){
+  // 删除作品
+  return await instance.delete('/del-rhizome/v1?rhizome_id=' + rid)
+}
+
+
+export async function apiUploadImage(file) {
+  let formData = new FormData()
+  formData.append('file', file)
+
+  return await instance.post('/account/upload/v1', formData)
 }

@@ -1,5 +1,5 @@
 <template>
-  <h1 class="hh1">背景信息</h1>
+  <h1 class="hh1">研究植物根系，识别数量。</h1>
 </template>
 <script>
   export default {
@@ -12,6 +12,7 @@
 </script>
 <style scoped>
   .hh1{
-    margin: auto;
+    margin: 30px 0 0 0;
+    text-align: center;
   }
 </style>

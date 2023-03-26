@@ -56,7 +56,8 @@ router.beforeEach((to, from) => {
     // 检查用户是否已登录
     !token &&
     // ❗️ 避免无限重定向
-    to.name !== 'Login'
+    to.name !== 'Login' && 
+    to.name !== 'Register'
   ) {
     // 将用户重定向到登录页面
     return { name: 'Login' }

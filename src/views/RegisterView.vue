@@ -89,7 +89,7 @@ import {login, register} from '@/api/index.js'
           async handleSubmit (valid, { username, password }) {
               if (valid) {
                   let response = await register(username, password)
-                  if (response.data.data.code == 0){
+                  if (response.data.code == 0){
                     // 注册成功
                     this.$router.push('/login')
                   } else {
